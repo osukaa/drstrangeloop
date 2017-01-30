@@ -4,10 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Dr. Strangeloop or: How I Learned to Stop Worrying and Love the Web</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/twitter.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +25,196 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					Dr. Strangeloop or: How I Learned to Stop Worrying and Love the Web
+					<br>
+					<img src="img/dr_strangelove.gif">
+				</section>
+				<section>
+					<section>
+						<p>A Brief History of Time</p>
+						<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">These two snippets are different:<br><br>// 1<br>obj.method();<br><br>// 2<br>var method = obj.method;<br>method();<br><br>Learn why and you’ll understand JavaScript.</p>&mdash; Dan Abramov (@dan_abramov) <a href="https://twitter.com/dan_abramov/status/790858537513656320">October 25, 2016</a></blockquote>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</section>
+					<section>
+						<ul>
+							<li class="fragment" data-fragment-index="1">1995 - Creado por Brendan Eich para Netscape</li>
+							<li class="fragment" data-fragment-index="2">1997 - Sale al público como ECMAScript</li>
+							<li class="fragment" data-fragment-index="3">2005 - Jesse James Garrett acuña el termino`ajax`</li>
+							<li class="fragment" data-fragment-index="4">2006 - John Resig libera jQuery</li>
+							<li class="fragment" data-fragment-index="5">2009 - Se renombra ECMAScript 3.1 a ECMAScript 5</li>
+							<li class="fragment" data-fragment-index="6">2009 - Ryan Dahl muestra node.js en JSConf EU</li>
+							<li class="fragment" data-fragment-index="7">2010 - AngularJS</li>
+							<li class="fragment" data-fragment-index="8">2011 - Ember</li>
+							<li class="fragment" data-fragment-index="9">2013 - ReactJS</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>Javascript puro y silvestre</p>
+						<small>el que usaban tus abuelitos</small>
+						<br>
+						<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Callbacks 4 Life!<br><br>const getJSON = (url, cb) =&gt; fetch(url)<br>.then(response =&gt; response.json())<br>.then(json =&gt; cb(null, json))<br>.catch(cb)</p>&mdash; Mikeal Rogers (@mikeal) <a href="https://twitter.com/mikeal/status/800048041151459328">November 19, 2016</a></blockquote>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</section>
+					<section>
+						<p>Callbacks</p>
+						<p>Es una función que se pasa como argumento para que se ejecute en algún futuro.</p>
+						<pre><code data-trim>
+							const fs = require('fs');
+							fs.readFile('/some/path/to/file', (err, data) => {
+								if (err) throw err;
+								console.log(data);
+							});
+							</code></pre>
+					</section>
+					<section>
+						<p>Promises</p>
+						<p>Es un remplazo para un resultado que todavía no está disponible</p>
+						<pre><code data-trim>
+							fs.readFileAsync('/some/path/to/file')
+								.then((data) => {
+									console.log(data);
+								})
+								.catch((err) => {
+									console.error(err);
+								});
+							</code></pre>
+					</section>
+					<section>
+						<p>async / await</p>
+						<p>El proposito de async/await es simplificar el uso de promesas.</p>
+						<pre><code data-trim>
+							try {
+							  const data = await fs.readFileAsync('/some/path/to/file')
+							} catch (e) {
+							  console.error(e);
+							}
+							</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>Tendencias en JS</p>
+						<small>Primavera/Verano 2017</small>
+						<br>
+						<img src="img/war_room.gif">
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>Tipado</p>
+						<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">Keys to reasonable JS:<br>Tests<br>Types (TS, Flow)<br>Immutable data<br>Pure funcs<br>Higher order funcs<br>Parameterize<br>Composition<br>Partial application</p>&mdash; Cory House (@housecor) <a href="https://twitter.com/housecor/status/800490127684435968">November 21, 2016</a></blockquote>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</section>
+					<section>
+						<p>Typescript</p>
+						<small>Microsoft queriendo hacer JS más Java</small>
+						<pre><code data-trim>
+						interface Person {
+						  firstName: string;
+						  lastName: string;
+						}
+
+						function greeter(person: Person) {
+						  return "Hello, " + person.firstName + " " + person.lastName;
+						}
+							</code></pre>
+					</section>
+					<section>
+						<p>Flow</p>
+						<small>Facebook queriéndolo hacer cool</small>
+						<pre><code data-trim>
+							/* @flow */
+
+							function foo(x: string, y: number): number {
+							return x.length * y;
+							}
+
+							foo("Hello", 42);
+							</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>Programación Funcional</p>
+						<small>Un grupo cree que este es el paradigma correcto a usar</small>
+						<br>
+						<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">&quot;In category theory, an anamorphism denotes a morphism from a coalgebra to the final coalgebra for that endofunctor. What&#39;s the problem?&quot;</p>&mdash; Reginald deBRAIDEWAD (@raganwald) <a href="https://twitter.com/raganwald/status/804094833161891840">November 30, 2016</a></blockquote>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</section>
+					<section>
+						<p>Ramda</p>
+						<small>Es una libreria de utilidades para hacer más fácil la programación funcional</small>
+						<pre><code data-trim>
+							// Plain JS
+							var incompleteTasks = tasks.filter(function(task) {
+								return !task.complete;
+							});
+							// Lo-dash
+							var incompleteTasks = _.filter(tasks, {complete: false});
+							// Ramda
+							var incomplete = R.filter(R.whereEq({complete: false});
+							</code></pre>
+					</section>
+					<section>
+						<p>Purescript</p>
+						<small>Quiero que mi JS parezca Haskell</small>
+						<pre><code data-trim>
+							module Example where
+
+							import Control.Monad.Eff.Console (log)
+
+							main = log "Hello, World!"
+							</code></pre>
+					</section>
+					<section>
+						<div style="background-color: white">
+							<img src="img/redux.png" height="150">
+						</div>
+						<br>
+						<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/dan_abramov">@dan_abramov</a> It&#39;s cool that you are inventing a better Flux by not doing Flux at all. :D I actually like that</p>&mdash; André Staltz (@andrestaltz) <a href="https://twitter.com/andrestaltz/status/616271392930201604">July 1, 2015</a></blockquote>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>Reactive Extensions</p>
+						<small>¿Ah?</small>
+						<p>Es una combinación de las mejores ideas del patrón Observer, Iterator y programación funcional</p>
+					</section>
+					<section>
+						<pre><code data-trim>
+						var Rx = require('rx');
+						var walk = require('walk');
+
+						var walkerSource = walk.walk(__dirname);
+						var walker = Rx.Observable.fromCallback(walkerSource.on);
+						var source = walker('file');
+
+						console.log('walk test');
+						source.subscribe(
+						function(root, stats, next) {
+							console.log(stats.name);
+							next();
+						},
+						function(root, stats, next) {
+							console.log(stats.name);
+							next();
+						},
+						function() {
+							console.log('end');
+						}
+						);
+							</code></pre>
+					</section>
+				</section>
+				<section>
+					<p>Demo</p>
+					<br>
+					<img src="img/major_rides_bomb.gif">
+				</section>
 			</div>
 		</div>
 
